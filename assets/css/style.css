@@ -1,26 +1,52 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: 'eldorado A';
+  src: url('../fonts/yourfontname/eldorado_text_italic-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'eldorado B';
+  src: url('../fonts/yourfontname/eldorado_text_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'crazy';
+  src: url('../fonts/yourfontname/karnevale-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bull';
+  src: url('../fonts/yourfontname/NeverLetGo.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-variant-numeric: oldstyle;
+}
 
 /* VARIABLES */
 
 :root {
-  /* Color values */
-  --color-background: rgba(200,200,200,1);
-  --color-block: rgba(255,255,255,1);
-  --color-text: rgba(0,0,0,1);
+  --color-background: rgb(255, 255, 255);
+  --color-text: rgb(27, 27, 27);
   --color-text-link: rgba(0,0,255,0.8);
   --color-text-link-hover: rgba(0,0,255,0.4);
-  /* Font values */
-  --font-family: 'Helvetica', 'Arial', sans-serif;
-  --font-size: 24px;
-  /* Margin value */
+  --font-text: 'eldorado B';
+  --font-size: 1.5em;
+  line-height: 1.5;
   --margin: 1rem;
+  text-align: center;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
-
-
-
-/* GENERAL STYLES */
 
 html {
   font: var(--font-size) var(--font-family);
@@ -29,141 +55,478 @@ html {
 }
 
 body {
-  position:relative;
   background-color: var(--color-background);
   font: var(--font-size) var(--font-family);
   color: var(--color-text);
-  width:100%;
-  height:auto;
-  overflow-y:auto;
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  line-height: inherit;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  overflow-x: hidden;
+}
+
+.text-section {
+  text-align: justify;
+  position: relative;
+  max-width: 70ch;
+  margin: 0 auto;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  word-spacing: -0.05em;
+  line-height: 1.2;
+  clear: both;
+  hyphens: auto; 
+  overflow-wrap: break-word; 
 }
 
 
+@media (max-width: 768px) {
+  /* Adjust typography for smaller screens */
+  :root {
+    --font-size: 1.2em;  /* Smaller font size for readability */
+  }
+}
+
+  /* Adjust general font-size on mobile */
+  html, body {
+    font: var(--font-size) var(--font-family);
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+
+
+/* Responsive typography - Avoid rivers on different screen sizes */
+@media (max-width: 480px) {
+  :root {
+    --font-size: 1.1em; /* Even smaller font size for very small screens */
+  }
+
+  .text-section {
+    max-width: 95%; /* Text takes almost full width on small screens */
+    word-spacing: normal; /* Prevent large gaps */
+    line-height: 1.4; /* Adjust line-height for better readability */
+  }
+}
+
+.clip-path.river-block {
+  width: 40%;
+  max-height: 100%;
+}
+.text-section:not(.narrow-text):has(.river-block + .river-block) .clip-path.river-block {
+  width: 20%;
+}
+
+.clip-path.river-block.is-right {
+  float: left;
+  shape-outside: polygon(0% 0%, 70% 50%, 0% 100%, 20% 80%, 50% 50%, 20% 20%);
+}
+
+.clip-path.river-block.is-left {
+  float: right;
+  shape-outside: polygon(0% 100%, 100% 100%, 70% 60%, 55% 45%, 40% 130%, 90% 10%);
+ 
+}
+
+a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-align: center;
+}
+
+a:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.measure{
+  max-width: 60ch; 
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  text-align: center;
+  size: 5rem;
+  line-height: 2.5rem;
+  font-family: 'crazy';
+  font-stretch: expanded;
+  z-index: 100;
+  padding: 0.5rem 0;
+}
+
+.h6 {
+  text-align: center;
+  size: 5rem;
+  line-height: 2.5rem;
+  font-family: 'crazy';
+  font-stretch: expanded;
+  top: 0;
+}
+
+.h7 {
+  text-align: center;
+  size: 5rem;
+  line-height: 2.5rem;
+  font-family: 'crazy';
+  font-stretch: expanded;
+  top: 0;
+  z-index: 100;
+}
+
+.custom-font {
+  font-family: 'eldorado A'; /* Change 'eldorado A' to any of your custom fonts */
+  --font-size: 1.5em;
+  line-height: 1.5;
+  --margin: 1rem;
+}
+
+figcaption {
+  font-family: 'eldorado A', sans-serif; /* Change font */
+  font-size: 0.875rem;
+  text-align: center; /* Align text in the center */
+  margin-top: 0.875rem; /* Add space above the caption */
+  font-style: italic; /* Apply italic style */
+  line-height: 1.1; /* Adjust line height for readability */
+}
+
+.p{
+margin: 2rem;
+}
+
+.ol, ul {
+  color: rgb(51, 0, 255);
+  list-style: none;
+  padding-left: 1.5em;
+  padding-top: 1rem;
+  justify-content: center;
+}
+
+.ol li::before, ul li::before {
+  content: '\2022';
+  color: red; 
+  font-size: 0.8em;
+  animation: colorChange 4s infinite alternate, bounce 0.5s infinite alternate;
+}
+
+.ur{
+font-family: 'sisters';
+}
+
+@keyframes colorChange {
+  0% {
+    color: rgb(255, 255, 255);
+  }
+  50% {
+    color: rgb(255, 0, 0);
+  }
+  100% {
+    color: rgb(255, 255, 255);
+  }
+}
+
+/* .blockquote{
+   blockquote element style 
+} */
+
+/* .hr{
+  horizontal rule style 
+} */
 
 /* PAGE STYLES */
 
 /* page structure */
 
 div.page-wrapper {
-  /* the element that 'wraps' everything */
-  position: relative;
-  display: block;
-  float:left;
-  width:100%;
-  height:auto;
   padding: var(--margin);
-  background-color: darkgray;
-  box-sizing: border-box;
 }
 
-/* Do your work here... */
 
-main.layout-container {
-  position:relative;
-  display: block;
-  float:left;
+.li{
+  color: red;
+
+}  
+
+nav {
+  width: 100%;
+  background-color: #ffffff89;
+  padding: 0.1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: 'Bull';
+  transition: 0.3s ease-in-out;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 0.6rem;
+  padding: 0.25rem 0.75rem;
+  transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  color: rgb(0, 30, 255);
+}
+
+
+body {
+  padding-bottom: 3rem;
+}
+
+/* Existing dot animation */
+nav ul li.active::before {
+  content: '\2022'; 
+  font-size: 2rem; 
+  color: rgb(128, 0, 0);
+  animation: flashGreen 0.5s alternate infinite;
+  cursor: pointer;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+@keyframes flashGreen {
+  0% {
+    color: green;
+  }
+  100% {
+    color: red;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex; /* Keep the nav bar visible */
+    justify-content: center;
+    padding: 0.25rem; /* Reduce padding for smaller screens */
+  }
+
+  nav ul {
+    flex-wrap: nowrap; /* Prevent wrapping of list items */
+  }
+
+  nav ul li {
+    display: inline-block; /* Prevent list items from taking more space */
+  }
+
+  /* Hide text and make the dot clickable */
+  nav ul li a {
+    visibility: hidden; /* Hide the text on small screens */
+    font-size: 0; /* Reduce font size */
+  }
+
+  nav ul li.active::before {
+    visibility: visible; /* Show the dot animation */
+    font-size: 2rem; /* Size for the dot */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Make the dots clickable */
+  nav ul li a {
+    cursor: pointer; /* Add pointer cursor for clickable dot */
+  }
+}
+
+/* content */
+
+main {
   width:100%;
-  height:auto;
-  background-color: black;
-  padding:1rem;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.layout-block{
-  width:25%;
-  position:relative;
-  display:block;
-  float:left;
-  clear:right;
-  background-color: coral;
-  margin:0rem;
-  padding:0rem;
+/* Fullscreen header with video */
+header {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
+}
+/* Fullscreen header with video */
+header {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.layout-block p{
-  text-align:center;
-  margin:0;
-  padding:0;
-  background-color: orangered;
+/* Video container now stretches across the entire viewport */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Sends video to background */
+}
+
+/* Video element stretched to cover the entire screen */
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Stretches video to full width */
+  height: 100%; /* Stretches video to full height */
+  object-fit: cover; /* Ensures video covers the entire area without distortion */
+}
+
+/* H1 overlaying the video */
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'crazy';
+  font-size: 2rem;
+  line-height: 3rem;
+  color: rgb(255, 0, 0); /* Ensures visibility on dark backgrounds */
+  text-align: center;
+  opacity: 0; /* Start transparent */
+  animation: fadeIn 2
+}
+
+/* Ensure the H1 has no background */
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'crazy';
+  font-size: clamp(1.5rem, 6vw, 4rem); /* Scales down on smaller screens */
+  line-height: 1.2em; /* Maintains readability */
+  color: rgb(255, 255, 255); /* White text */
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+  z-index: 2;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  width: 90%; /* Ensures it stays within the screen */
+  max-width: 90vw; /* Adapts width responsively */
+  word-wrap: break-word;
+}
+
+/* Fade-in effect for H1 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.6rem; /* Reduces font size further on phones */
+    line-height: 1.1em;
+    max-width: 80vw;
+  }
 }
 
 
-
-/* color scheme blocks */
-
-.layout-block:nth-of-type(1){
-  width:50vmax;
-  height:50vmax;
-  opacity:1;
+.footnote-img {
+  width: 14px;
+  height:fit-content;
 }
 
-.layout-block:nth-of-type(2){
-  width:25%;
-  height:100px;
-  opacity:0.8;
+.footnotes-list {
+  list-style: none;
+  font-family: 'eldorado B';
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 80%;
+  max-width: 70ch;
+  margin: 2rem auto; /* Centers the footnotes */
+  text-align: left;
+  text-indent: 2rem;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.layout-block:nth-of-type(3){
-  width:25%;
-  height:100px;
-  opacity:0.6;
+@media (max-width: 600px) {
+  .footnotes-list {
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+    --margin: 1rem; /* Decrease margin for small screens */
+    padding-left: 0.4rem; /* Adjust left padding to avoid text being too close to the edge */
+  }
+
+
+  .footnote-reverse {
+    width: 12px;
+    height:fit-content;
+  }
 }
 
-.layout-block:nth-of-type(4){
-  width:25%;
-  height:100px;
-  opacity:0.5;
+.footnote-reverse {
+  width: 12px;
+  height:fit-content;
 }
 
-.layout-block:nth-of-type(5){
-  width:25%;
-  height:100px;
-  opacity:0.4;
+.Bibliography{
+  font-family: 'eldorado A';
+  font-size: 15px;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-.layout-block:nth-of-type(6){
-  width:25%;
-  height:100px;
-  opacity:1;
+.Image-text{
+text-align: left;
+justify-items:center;
 }
 
-.layout-block:nth-of-type(7){
-  width:25%;
-  height:100px;
-  opacity:0.8;
+.footer {
+  font-family: eldorado B;
+  font-size: 9px;
+  text-align: center;
+  line-height: 10%;
 }
 
-.layout-block:nth-of-type(8){
-  width:25%;
-  height:100px;
-  opacity:0.6;
-}
-
-.layout-block:nth-of-type(9){
-  width:25%;
-  height:100px;
-  opacity:0.5;
-}
-
-.layout-block:nth-of-type(10){
-  width:25%;
-  height:100px;
-  opacity:0.4;
-}
-
-.layout-block:nth-of-type(11){
-  width:25%;
-  height:100px;
-  opacity:1;
-}
-
-.layout-block:nth-of-type(12){
-  width:25%;
-  height:100px;
-  opacity:0.8;
-}
-
-
+/* 
+.bridge {
+  width: 60vw;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+} */
 
 /* UTILITY CLASSES */
 
@@ -177,12 +540,31 @@ main.layout-container {
   display: none;
 }
 
-
-
 /* WEBSITE MEDIA QUERIES */
+
+/* responsive typeface for various breaking points, sets the default 'rem' value */
+@media (max-width: 299px) { :root{--font-size: 18px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 299px) and (max-width: 340px) { :root{--font-size: 19px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 340px) and (max-width: 440px) { :root{--font-size: 20px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 441px) and (max-width: 779px) { :root{--font-size: 19px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 780px) and (max-width: 992px) { :root{--font-size: 20px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 993px) and (max-width: 1200px) { :root{--font-size: 21px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 1201px) and (max-width: 1320px) { :root{--font-size: 22px;} html, body {font: var(--font-size) var(--font-text); } }
+@media (min-width: 1321px) { :root{--font-size: 24px;} html, body {font: var(--font-size) var(--font-text); } }
 
 /* styles for 'mobile', screen sizes up to 779px, should covers 'mobile' and 'tablet' */
 /* style this one first and then use the subsequent ones in a cascading way (from general to specific) */
+
+
+@media screen and (max-width: 800px) {
+
+  /* remove 2 columns layout */
+
+
+  
+  /* alles volledige breedte en hier nieuwe clip-paths invoeren */
+
+}
 
 @media (max-width: 779px) {
 
@@ -203,5 +585,33 @@ main.layout-container {
 }
 
 
+
+/* use this query to apply style changes to smaller smartphones sizes (like an iPhone 5S or SE 2016), max size of 339px */
+
+@media (max-width: 339px) {
+
+  /* your overriding css properties here */
+
+}
+
+
+
+/* use this query to apply style changes for 'mobile' screen sizes that are flipped in 'landscape' mode */
+
+@media (max-width: 779px) and (orientation: landscape) {
+
+   /* your overriding css properties here */
+
+}
+
+
+
+/* use this query to apply style for 'small' desktop screens */
+
+@media (min-width: 780px) and (max-width: 992px) {
+
+  /* your overriding css properties here */
+
+}
 
 
