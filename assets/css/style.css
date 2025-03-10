@@ -465,7 +465,7 @@ h1 {
 
 .footnote-img {
   width: 0.875rem;
-  height:fit-content;
+  height:baseline;
 }
 
 .footnotes-list {
