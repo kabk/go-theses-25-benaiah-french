@@ -464,7 +464,7 @@ h1 {
 
 
 .footnote-img {
-  width: 14px;
+  width: 0.875rem;
   height:fit-content;
 }
 
@@ -489,15 +489,16 @@ h1 {
     padding-left: 0.4rem; /* Adjust left padding to avoid text being too close to the edge */
   }
 
-
   .footnote-reverse {
-    width: 12px;
+    width: 0.875rem;
     height:fit-content;
   }
 }
 
+
+
 .footnote-reverse {
-  width: 12px;
+  width: 0.875rem;
   height:fit-content;
 }
 

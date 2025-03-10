@@ -14,17 +14,32 @@ function docReady(fn) {
 }   
 
 document.addEventListener("DOMContentLoaded", function () {
-  // List of video sources
-  const videos = ["assets/images/MOV007.mp4", "assets/images/MOV00A.mp4", "assets/images/beaverboy.mp4","assets/images/molen.mp4","assets/images/molen1.mp4"];
+  const videos = [
+      "assets/images/MOV007.mp4",
+      "assets/images/beaverboy.mp4",
+      "assets/images/molen.mp4",
+      "assets/images/molen1.mp4"
+  ];
 
-  // Randomly select a video
+  const videoElement = document.querySelector(".background-video");
+  const videoSource = document.getElementById("videoSource");
+
+  if (!videoElement || !videoSource) {
+      console.error("Video element or source not found");
+      return;
+  }
+
+  // Select a random video
   const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+  videoSource.src = randomVideo;
+  videoElement.load();
 
-  // Set the selected video as the source
-  document.getElementById("videoSource").src = randomVideo;
-
-  // Reload the video element to apply the new source
-  document.querySelector(".background-video").load();
+  // Ensure the video plays after it's fully loaded
+  videoElement.addEventListener("canplaythrough", () => {
+      videoElement.play().catch(error => {
+          console.log("Autoplay blocked, waiting for user interaction.");
+      });
+  });
 });
 
 
@@ -33,11 +48,6 @@ docReady(function() {
 	// functions
 	// go
 	// here
-
-    window.addEventListener('load', function() {
-        var audio = document.getElementById('background-audio');
-        audio.play();
-    });
     
 
     /* DEZE KUN JE AANPASSEN ALS DINGEN TEVEEL VERSPRINGEN OF TEVEEL VERTRAGING VERTOORZAKEN */
